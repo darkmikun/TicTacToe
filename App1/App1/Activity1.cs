@@ -33,6 +33,8 @@ namespace App1
 
         ViewStates vis = Android.Views.ViewStates.Visible;
 
+        public static User LoginedUser;
+
         static string myHost = System.Net.Dns.GetHostName();
         string myIP = System.Net.Dns.GetHostByName(myHost).AddressList[0].ToString();
 
@@ -59,6 +61,8 @@ namespace App1
 
             loginWhileRemember.Parameters.Add(new SqlParameter("ip", myIP));
 
+
+            string log = "";
             con.Open();
             SqlDataReader readWhileRemember = null;
             readWhileRemember = loginWhileRemember.ExecuteReader();
@@ -70,12 +74,17 @@ namespace App1
             {
                 k++;
                 rem.Add(readWhileRemember.GetInt32(7));
+                log = readWhileRemember.GetString(1);
             }
 
             con.Close();
 
-            if (rem[0] == 1 && k == 1)
+            if (k == 1 && rem[0] == 1)
+            {
+                CreateUser(log);
                 StartActivity(typeof(MainActivity));
+                this.Finish();
+            }
             else
             {
                 et[0] = FindViewById<EditText>(Resource.Id.LoginEdit);
@@ -175,7 +184,9 @@ namespace App1
                         a.SetMessage("Registration was succesfull");
                         a.Show();
 
+                        CreateUser(login);
                         StartActivity(typeof(MainActivity));
+                        this.Finish();
                     }
                     catch (Exception ex)
                     {
@@ -236,7 +247,9 @@ namespace App1
                             con.Close();
                         }
 
+                        CreateUser(login);
                         StartActivity(typeof(MainActivity));
+                        this.Finish();
                         break;
                     }
                     else
@@ -270,6 +283,28 @@ namespace App1
 
             con.Open();
             return isIn.ExecuteReader();
+        }
+
+        public void CreateUser(string login)
+        {
+            SqlCommand selectuser = new SqlCommand("select Login,Password,Name from Users where Login=@login", con);
+
+            selectuser.Parameters.Add(new SqlParameter("login", login));
+
+            string pas = "";
+            string n = "";
+
+            con.Open();
+            SqlDataReader readselecteduser = selectuser.ExecuteReader();
+            while(readselecteduser.Read())
+            {
+                pas = readselecteduser.GetString(1);
+                n = readselecteduser.GetString(2);
+                break;
+            }
+            con.Close();
+
+            LoginedUser = new User(login, pas, n);
         }
     }
 }

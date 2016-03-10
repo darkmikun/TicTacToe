@@ -22,13 +22,8 @@ namespace App1
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
-            // Set our view from the "main" layout resource
+            
             SetContentView(Resource.Layout.Main);
-
-            // Get our button from the layout resource,
-            // and attach an event to it
-            //  Button button = FindViewById<Button>(Resource.Id.MyButton);
 
             iv[0] = FindViewById<ImageView>(Resource.Id.imageView4);
             iv[1] = FindViewById<ImageView>(Resource.Id.imageView5);
@@ -44,7 +39,6 @@ namespace App1
 
             string myHost = System.Net.Dns.GetHostName();
             string myIP = System.Net.Dns.GetHostByName(myHost).AddressList[0].ToString();
-            //Button btn = FindViewById<Button>(Resource.Id.but);
             btn.Click += delegate {
                 AlertDialog.Builder a = new AlertDialog.Builder(this);
                 a.SetMessage(myIP);
@@ -113,8 +107,12 @@ namespace App1
             };
 
 
-          
 
+            iv[1].Click += delegate
+              {
+                  StartActivity(typeof(Activity2));
+                  this.Finish();
+              };
 
         }
 
