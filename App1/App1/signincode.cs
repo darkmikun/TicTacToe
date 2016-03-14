@@ -15,7 +15,7 @@ using System.Net.NetworkInformation;
 namespace App1
 {
     [Activity(Label = "blabla", MainLauncher = true)]
-    public class Activity1 : Activity
+    public class signincode : Activity
     {
         static string constring = @"Server=tcp:qwertyuiop.database.windows.net,1433;Database=trytry;User ID=darkstar@qwertyuiop;Password=Mikun_4366644;Encrypt=False;Trusted_Connection=False;";
 
@@ -42,11 +42,10 @@ namespace App1
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.layout1);
-            // Create your application here
+            SetContentView(Resource.Layout.SignIn);
 
             //SqlCommand clear = new SqlCommand();
-            //clear.CommandText = "truncate table Users";
+            //clear.CommandText = "truncate table users";
             //clear.Connection = con;
             //con.Open();
 
@@ -79,9 +78,10 @@ namespace App1
 
             con.Close();
 
-            if (k == 1 && rem[0] == 1)
+            if (k == 1 && rem[0] == 1 && !profilecode.isLogOut)
             {
                 CreateUser(log);
+                profilecode.isLogOut = false;
                 StartActivity(typeof(MainActivity));
                 this.Finish();
             }
@@ -185,6 +185,7 @@ namespace App1
                         a.Show();
 
                         CreateUser(login);
+                        profilecode.isLogOut = false;
                         StartActivity(typeof(MainActivity));
                         this.Finish();
                     }
@@ -248,6 +249,7 @@ namespace App1
                         }
 
                         CreateUser(login);
+                        profilecode.isLogOut = false;
                         StartActivity(typeof(MainActivity));
                         this.Finish();
                         break;

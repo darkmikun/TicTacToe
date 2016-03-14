@@ -13,9 +13,11 @@ using Android.Widget;
 namespace App1
 {
     [Activity(Label = "Activity2")]
-    public class Activity2 : Activity
+    public class profilecode : Activity
     {
-        User loguser = Activity1.LoginedUser;
+        public static bool isLogOut = false;
+
+        User loguser = signincode.LoginedUser;
 
         TextView[] tv = new TextView[3];
 
@@ -25,7 +27,7 @@ namespace App1
         {
             base.OnCreate(savedInstanceState);
             
-            SetContentView(Resource.Layout.layout2);
+            SetContentView(Resource.Layout.profile);
 
             tv[0] = FindViewById<TextView>(Resource.Id.ProfileLogin);
             tv[1] = FindViewById<TextView>(Resource.Id.Profilepassword);
@@ -37,6 +39,29 @@ namespace App1
             tv[0].Text += loguser.Login;
             tv[1].Text += loguser.Password;
             tv[2].Text += loguser.Name;
+
+            btn[1].Click += delegate
+              {
+                  LogOutBTn_Click();
+              };
+
+            btn[0].Click += delegate
+              {
+                  ChangeProfileBTN_Click();
+              };
+        }
+
+        public void LogOutBTn_Click()
+        {
+            signincode.LoginedUser.Clear();
+            isLogOut = true;
+            StartActivity(typeof(signincode));
+            this.Finish();
+        }
+
+        public void ChangeProfileBTN_Click()
+        {
+
         }
     }
 }

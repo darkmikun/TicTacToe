@@ -20,11 +20,21 @@ namespace App1
 
         private string name;
 
+        public User()
+        { }
+
         public User(string log, string pas, string n)
         {
             Login = log;
             Password = pas;
             Name = n;
+        }
+
+        public User(User us)
+        {
+            Login = us.login;
+            Password = us.Password;
+            Name = us.Name;
         }
 
         public string Login
@@ -61,6 +71,13 @@ namespace App1
             {
                 name = value;
             }
+        }
+
+        public void Clear()
+        {
+            Login = "";
+            Password = "";
+            Name = "";
         }
     }
 }
