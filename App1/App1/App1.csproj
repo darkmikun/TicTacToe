@@ -50,6 +50,7 @@
     <Compile Include="signincode.cs" />
     <Compile Include="profilecode.cs" />
     <Compile Include="changeprofilecode.cs" />
+    <Compile Include="TicTacToeGameCode.cs" />
     <Compile Include="waitplayercode.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="Player.cs" />
@@ -72,6 +73,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\waitplayer.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\TicTacToe.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -98,6 +102,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\findgame.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

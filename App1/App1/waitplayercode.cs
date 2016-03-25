@@ -23,7 +23,9 @@ namespace App1
 
         Button btn;
 
-      
+        public static bool isHost = true;
+
+        public static Host imhost = new Host();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -37,7 +39,7 @@ namespace App1
 
             
 
-            Host imhost = new Host();
+            
             Random rnd = new Random();
             int port = rnd.Next(9999);
             Player I = new Player(signincode.LoginedUser, System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).AddressList[0].ToString(), port);
@@ -67,7 +69,16 @@ namespace App1
             tv.Text = "";
             tv.Text += I.Name + "\n";
             imhost.Create(I.port,I,gameid);
+
+            tv.Text += "    " + imhost.player2.Login;
             //imhost.Close();
+
+            btn.Click += delegate
+            {
+                imhost.SandDate("StartGame");
+
+                StartActivity(typeof(TicTacToeGameCode));
+            };
         }
 
        

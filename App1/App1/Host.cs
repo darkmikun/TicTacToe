@@ -15,15 +15,18 @@ using System.Threading;
 
 namespace App1
 {
-    class Host : Activity
+    public class Host : Activity
     {
         private int localPort;
         private Thread ServerThread;
         TcpListener listener;
         int gameID;
 
-        public Player player1;
-        public Player player2;
+
+        Socket ClientSock;
+
+        public Player player1 = new Player();
+        public Player player2 = new Player();
 
         public void Create(int port, Player pl, int gaid)
         {
@@ -42,10 +45,14 @@ namespace App1
             return;
         }
 
+        public void SandDate(string data)
+        {
+            ClientSock.Send(Encoding.ASCII.GetBytes(data));
+        }
+
         private void ServStart()
         {
             string myHost = System.Net.Dns.GetHostName();
-            Socket ClientSock;
             string data;
             byte[] cldata = new byte[1024];
             listener = new TcpListener(System.Net.Dns.GetHostByName(myHost).AddressList[0], localPort);
@@ -83,16 +90,19 @@ namespace App1
                         player2.ip = split[2];
                         player2.Password = "";
 
-                        FindViewById<TextView>(Resource.Id.connectedplayertv).Text += "\n"+player2.Login;
+                      //  TextView tv = FindViewById<TextView>(Resource.Id.connectedplayertv);
+                       // tv.Text += "\n"+player2.Login;
 
                         data = player1.Name;
 
                         ClientSock.Send(Encoding.ASCII.GetBytes(data));
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
-
+                    AlertDialog.Builder a = new AlertDialog.Builder(this);
+                    a.SetMessage(ex.ToString());
+                    a.Show();
                     ClientSock.Close();
                     listener.Stop();
                     //ServerThread.Abort();

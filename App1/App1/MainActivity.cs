@@ -15,6 +15,8 @@ namespace App1
     public class MainActivity : Activity
     {
         //int count = 1;
+        public static Player pl = new Player();
+
         public static string constring = @"Server=tcp:qwertyuiop.database.windows.net,1433;Database=trytry;User ID=darkstar@qwertyuiop;Password=Mikun_4366644;Encrypt=False;Trusted_Connection=False;";
 
         ImageView[] iv = new ImageView[9];
@@ -128,7 +130,11 @@ namespace App1
             iv[3].Click += delegate
               {
                   FindGame();
+
+                  StartActivity(typeof(TicTacToeGameCode));
               };
+
+
         }
 
         public void FindGame()
@@ -138,13 +144,21 @@ namespace App1
             SqlCommand findHost = new SqlCommand("select top 1 * from Games",con);
 
             SqlDataReader readHost;
-
             con.Open();
             readHost = findHost.ExecuteReader();
             while(readHost.Read())
             {
-                Player pl = new Player(signincode.LoginedUser, readHost.GetString(2), readHost.GetInt32(3));
+                pl = new Player(signincode.LoginedUser, readHost.GetString(2), readHost.GetInt32(3));
                 break;
+            }
+
+            while (true)
+            {
+                string data = pl.ReseiveData();
+                if (data=="StartGame")
+                {
+                    break;
+                }
             }
         }
 

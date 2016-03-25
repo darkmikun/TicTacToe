@@ -54,10 +54,16 @@ namespace App1
 			public const int Icon = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int profile = 2130837507;
+			public const int o = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int startgame = 2130837508;
+			public const int profile = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public const int startgame = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int x = 2130837510;
 			
 			static Drawable()
 			{
@@ -135,8 +141,8 @@ namespace App1
 			// aapt resource value: 0x7f050002
 			public const int changepasswordtv = 2131034114;
 			
-			// aapt resource value: 0x7f05002b
-			public const int connectedplayertv = 2131034155;
+			// aapt resource value: 0x7f050037
+			public const int connectedplayertv = 2131034167;
 			
 			// aapt resource value: 0x7f050009
 			public const int imageView1 = 2131034121;
@@ -174,14 +180,50 @@ namespace App1
 			// aapt resource value: 0x7f050013
 			public const int imageView9 = 2131034131;
 			
+			// aapt resource value: 0x7f05002b
+			public const int iv1 = 2131034155;
+			
+			// aapt resource value: 0x7f050034
+			public const int iv10 = 2131034164;
+			
+			// aapt resource value: 0x7f050035
+			public const int iv11 = 2131034165;
+			
+			// aapt resource value: 0x7f050036
+			public const int iv12 = 2131034166;
+			
+			// aapt resource value: 0x7f05002c
+			public const int iv2 = 2131034156;
+			
+			// aapt resource value: 0x7f05002d
+			public const int iv3 = 2131034157;
+			
+			// aapt resource value: 0x7f05002e
+			public const int iv4 = 2131034158;
+			
+			// aapt resource value: 0x7f05002f
+			public const int iv5 = 2131034159;
+			
+			// aapt resource value: 0x7f050030
+			public const int iv6 = 2131034160;
+			
+			// aapt resource value: 0x7f050031
+			public const int iv7 = 2131034161;
+			
+			// aapt resource value: 0x7f050032
+			public const int iv8 = 2131034162;
+			
+			// aapt resource value: 0x7f050033
+			public const int iv9 = 2131034163;
+			
 			// aapt resource value: 0x7f050026
 			public const int nameEdit = 2131034150;
 			
 			// aapt resource value: 0x7f050006
 			public const int saveChangesbtn = 2131034118;
 			
-			// aapt resource value: 0x7f05002c
-			public const int startbtn = 2131034156;
+			// aapt resource value: 0x7f050038
+			public const int startbtn = 2131034168;
 			
 			// aapt resource value: 0x7f050007
 			public const int tableLayout1 = 2131034119;
@@ -233,7 +275,10 @@ namespace App1
 			public const int SignIn = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int waitplayer = 2130903044;
+			public const int TicTacToe = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int waitplayer = 2130903045;
 			
 			static Layout()
 			{

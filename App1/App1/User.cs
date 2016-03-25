@@ -21,7 +21,11 @@ namespace App1
         private string name;
 
         public User()
-        { }
+        {
+            Name = "";
+            Login = "";
+            Password = "";
+        }
 
         public User(string log, string pas, string n)
         {

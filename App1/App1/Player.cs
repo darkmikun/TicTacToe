@@ -13,7 +13,7 @@ using System.Net;
 
 namespace App1
 {
-    class Player : User
+    public class Player : User
     {
         //public string playerIP { get; set; }
 
@@ -23,8 +23,38 @@ namespace App1
         public string ip;
         public int port;
 
+        Socket Sock = null;
+
         public bool connectionResult = false;
 
+        public Player()
+        {
+            ip = "";
+            port = 0;
+        }
+        
+        public string ReseiveData()
+        {
+            try
+            {
+                byte[] receive = new byte[1024];
+
+                Sock.Receive(receive);
+
+                return Encoding.ASCII.GetString(receive).Trim();
+            }
+            catch(Exception ex)
+            {
+                return "NODATA";
+            }
+        }
+
+        public void Close()
+        {
+            Sock.Close();
+            Client.Close();
+        }
+        
         public Player(User us,string i, int por )
         {
             Name = us.Name;
@@ -50,9 +80,9 @@ namespace App1
             if (connectionResult)
             {
 
-                
+
                 Socket Sock = Client.Client;
-                
+
                 data = Login + " " + Name + " " + ip;
                 Sock.Send(Encoding.ASCII.GetBytes(data));
 
@@ -65,8 +95,7 @@ namespace App1
                 Toast.MakeText(Application.Context,"Connected to " + data,ToastLength.Short).Show();
                 
 
-                Sock.Close();
-                Client.Close();
+                
             }
             
             //Sock.Receive(remdata);
