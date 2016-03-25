@@ -71,7 +71,12 @@ namespace App1
             clear.ExecuteNonQuery();
             con.Close();
 
+            clear.CommandText = "truncate table Games";
+            clear.Connection = con;
+            con.Open();
 
+            clear.ExecuteNonQuery();
+            con.Close();
             SqlDependency.Start(constring);
 
 

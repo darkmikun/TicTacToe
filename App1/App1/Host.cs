@@ -30,8 +30,9 @@ namespace App1
             gameID = gaid;
             player1 = pl;
             localPort = port;
-            ServerThread = new Thread(new ThreadStart(ServStart));
-            ServerThread.Start();
+            //ServerThread = new Thread(new ThreadStart(ServStart));
+            //ServerThread.Start();
+            ServStart();
         }
 
         public void Close()
@@ -43,10 +44,11 @@ namespace App1
 
         private void ServStart()
         {
+            string myHost = System.Net.Dns.GetHostName();
             Socket ClientSock;
             string data;
             byte[] cldata = new byte[1024];
-            listener = new TcpListener(localPort);
+            listener = new TcpListener(System.Net.Dns.GetHostByName(myHost).AddressList[0], localPort);
             listener.Start();
 
             try
@@ -93,7 +95,7 @@ namespace App1
 
                     ClientSock.Close();
                     listener.Stop();
-                    ServerThread.Abort();
+                    //ServerThread.Abort();
                 }
 
             }

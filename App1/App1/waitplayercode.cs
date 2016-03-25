@@ -66,7 +66,7 @@ namespace App1
 
             tv.Text = "";
             tv.Text += I.Name + "\n";
-            imhost.Create(rnd.Next(9999),I,gameid);
+            imhost.Create(I.port,I,gameid);
             //imhost.Close();
         }
 
