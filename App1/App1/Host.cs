@@ -96,6 +96,13 @@ namespace App1
                         data = player1.Name;
 
                         ClientSock.Send(Encoding.ASCII.GetBytes(data));
+
+                        waitplayercode.btn.Click += delegate
+                        {
+                            ClientSock.Send(Encoding.ASCII.GetBytes("StartGame"));
+
+                            StartActivity(typeof(TicTacToeGameCode));
+                        };
                     }
                 }
                 catch(Exception ex)

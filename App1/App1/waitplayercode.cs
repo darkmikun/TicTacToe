@@ -21,7 +21,7 @@ namespace App1
     {
         public TextView tv;
 
-        Button btn;
+        public static Button btn;
 
         public static bool isHost = true;
 
